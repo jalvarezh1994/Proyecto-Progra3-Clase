@@ -1,9 +1,9 @@
 #include "Atributo.h"
 
-Atributo::Atributo(string tipo,string nombre,string visibilidad){
+Atributo::Atributo(string tipo,string nombre){
 	this->tipo=tipo;
 	this->nombre=nombre;
-	this->visibilidad=visibilidad;
+	//this->visibilidad=visibilidad;
 }
 
 Atributo::Atributo(){
@@ -25,11 +25,11 @@ void Atributo::setNombre(string nombre){
 string Atributo::getNombre(){
 	return nombre;
 }
-
+/*
 void Atributo::setVisibilidad(string visibilidad){
 	this-> visibilidad=visibilidad;
 }
 
 string Atributo::getVisibilidad(){
 	return visibilidad;
-}
+}*/

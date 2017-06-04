@@ -9,9 +9,9 @@ class Atributo{
 protected:
     string tipo;
     string nombre;
-    string visibilidad;
+    //string visibilidad;
 public:
-    Atributo(string,string,string);
+    Atributo(string,string);
     Atributo();
     
     string getTipo();
@@ -20,7 +20,7 @@ public:
     string getNombre();
     void setNombre(string);
 
-    string getVisibilidad();
-    void setVisibilidad(string);
+    //string getVisibilidad();
+    //void setVisibilidad(string);
 };
 #endif

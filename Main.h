@@ -16,6 +16,10 @@ public:
 
 	vector<Clase> getClases();
 	void setClases(vector<Clase>);
+
+	string getCpp();
+	string agregar();
+	string listar();
 };
 
 #endif
