@@ -13,13 +13,14 @@ protected:
 	vector<Clase>clases;
 public:
 	Main();
-
+	
 	vector<Clase> getClases();
 	void setClases(vector<Clase>);
 
 	string getCpp();
 	string agregar();
 	string listar();
+	string modificar();
 };
 
 #endif
