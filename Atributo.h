@@ -20,6 +20,12 @@ public:
     string getNombre();
     void setNombre(string);
 
+    string GetterH();
+    string SetterH();
+
+    string GetterCPP(string clase);
+    string SetterCPP(string clase);
+
     //string getVisibilidad();
     //void setVisibilidad(string);
 };

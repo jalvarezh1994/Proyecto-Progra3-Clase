@@ -1,5 +1,5 @@
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef C_MAIN_H
+#define C_MAIN_H
 
 #include <iostream>
 #include <string>
@@ -8,14 +8,14 @@
 
 using namespace std;
 
-class Main{
+class C_Main{
 protected:
-	vector<Clase>clases;
+	vector<Clase*>clases;
 public:
-	Main();
+	C_Main();
 	
-	vector<Clase> getClases();
-	void setClases(vector<Clase>);
+	vector<Clase*> getClases();
+	void setClases(vector<Clase*>);
 
 	string getCpp();
 	string agregar();

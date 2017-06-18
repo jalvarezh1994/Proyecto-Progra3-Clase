@@ -21,6 +21,11 @@ public:
 	
 	vector<Atributo> getAtri();
 	void setAtri(Atributo atri);
+
+	string getHeader();
+	string Contructores();
+	string getCpp();
+
 };
 
 #endif

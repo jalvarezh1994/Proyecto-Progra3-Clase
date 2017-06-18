@@ -1,31 +1,31 @@
-#include "Main.h"
+#include "C_Main.h"
 #include <string>
 
-Main::Main(){
+C_Main::C_Main(){
 
 }
 
-vector<Clase> Main::getClases() {
+vector<Clase*> C_Main::getClases() {
 	return clases;
 }
 
-void Main::setClases(vector<Clase> clases) {
+void C_Main::setClases(vector<Clase*> clases) {
 	this->clases = clases;
 }
 
-string Main::getCpp() {
+string C_Main::getCpp() {
     string retVal = "";
     retVal += "#include <iostream>\n";
     retVal += "#include <fstream>\n";
     retVal += "#include <string>\n";
     retVal += "#include <vector>\n";
     for (int i = 0; i < clases.size(); i++) {
-        retVal += "#include " + '\"' + clases[i].getNombre() + ".h\"\n";
+        retVal += "#include " + '\"' + clases[i]->getNombre() + ".h\"\n";
     }
     retVal += "\nusing namespace std;\n\n";
     retVal += "int main(){\n";
     for (int i = 0; i < clases.size(); i++) {
-        retVal += "vector<" + clases[i].getNombre() + ">" + " v" + clases[i].getNombre() + ";\n";
+        retVal += "vector<" + clases[i]->getNombre() + ">" + " v" + clases[i]->getNombre() + ";\n";
     }
     retVal += "int opcMenu;\n";
     retVal += "do{\n";
@@ -60,65 +60,80 @@ string Main::getCpp() {
         return retVal;
     }
 
-    string Main::agregar() {
+    string C_Main::agregar() {
         string retVal = "cout<<\"Menú agregar\"<<endl;\n";
-        /*
+        
         for (int i = 0; i < clases.size(); i++) {
-            retVal += "cout<<\"" << (i + 1) << ". " << clases[i].getNombre() << "\"<<endl;\n";
+            retVal += "cout<<\"" + (i + 1);
+            retVal += ". " + clases[i]->getNombre() + "\"<<endl;\n";
         }
+        
         retVal += "int opcAgregar;\n";
         retVal += "cout<<\"Ingrese la opción: \";\n";
-        retVal += "cin>>opcAgregar" << ";\n";
+        retVal += "cin>>opcAgregar";
+        retVal += ";\n";
         retVal += "switch(opcAgregar){\n";
+        
         for (int i = 0; i < clases.size(); i++) {
-            retVal += "case " << (i + 1) << ":{\n";
-            for (Atributo atr : clases[i].getAtri()) {
-                retVal += atr.getTipo() << " " << atr.getNombre().toLowerCase() << ";\n";
-                retVal += "cout<<\"Ingrese " << atr.getNombre().toLowerCase() << ": \";\n";
-                retVal += "cin>>" + atr.getNombre().toLowerCase() + ";\n";
+            retVal += "case " + (i + 1);
+            retVal += ":{\n";
+            vector<Atributo>atr=clases[i]->getAtri();
+            for (int j = 0; j < atr.size(); j++) {
+                retVal += atr[j].getTipo();
+                retVal += " " + atr[j].getNombre();
+                retVal += ";\n";
+                retVal += "cout<<\"Ingrese " + atr[j].getNombre();
+                retVal += ": \";\n";
+                retVal += "cin>>" + atr[j].getNombre();
+                retVal += ";\n";
             }
-            retVal += clases[i].getNombre() << " temporal(";
-            for (Atributo atr : clases[i].getAtri()) {
-                retVal += atr.getNombre().toLowerCase();
-                if (clases[i].getAtri().size() - 1 != i) {
+
+            retVal += clases[i]->getNombre() + " temporal(";
+            for (int j = 0; j < atr.size(); j++) {
+                retVal += atr[j].getNombre();
+                if (clases[i]->getAtri().size() - 1 != i) {
                     retVal += ",";
                 }
-            }
+            }   
+
             retVal += ");\n";
-            retVal += "v" + clases[i].getNombre() << ".push_back(temporal);\n";
+            retVal += "v" + clases[i]->getNombre() + ".push_back(temporal);\n";
             retVal += "break;\n}\n";
         }
         retVal += "}\n";
-        */
         return retVal;
     }
 
-    string Main::listar() {
+    string C_Main::listar() {
         string retVal = "cout<<\"Menú listar\"<<endl;\n";
-        /*
         for (int i = 0; i < clases.size(); i++) {
-            retVal += "cout<<\"" << (i + 1) << ". " << clases[i].getNombre() << "\"<<endl;\n";
+            retVal += "cout<<\"" + (i + 1);
+            retVal += ". " + clases[i]->getNombre() + "\"<<endl;\n";
         }
         retVal += "int opcListar;\n";
         retVal += "cout<<\"Ingrese la opción: \";\n";
-        retVal += "cin>>opcListar" << ";\n";
+        retVal += "cin>>opcListar";
+        retVal += ";\n";
         retVal += "switch(opcListar){\n";
         for (int i = 0; i < clases.size(); i++) {
-            retVal += "case " << (i + 1) + ":\n";
-            retVal += "for(int i=0;i<v" + clases[i].getNombre() << ".size();i++){\n";
-            for (Atributo atr : clases[i].getAtri()) {
-                retVal += "cout<<\"" << atr.getNombre() << "\"<<\" = \"<<" << "v" << clases[i].getNombre() << "[i].get" << atr.getNombre() << "();\n";
-            }
+            retVal += "case " + (i + 1);
+            retVal += ":\n";
+            retVal += "for(int i=0;i<v" + clases[i]->getNombre() + ".size();i++){\n";
+            vector<Atributo>atr=clases[i]->getAtri();
+            for (int j = 0; j < atr.size(); j++) {
+                retVal += "cout<<\"" + atr[j].getNombre() + "\"<<\" = \"<<" + "v" + 
+                clases[i]->getNombre() + "[i].get" + atr[j].getNombre() + "();\n";
+            }    
             retVal += "cout<<endl;\n";
             retVal += "\n}";
             retVal += "break;\n";
         }
         retVal += "}\n";
-        */
+    
         return retVal;
     }
 
-    string Main::modificar() {
+    string C_Main::modificar() {
         string retVal = "";
         return retVal;
     }
